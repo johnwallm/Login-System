@@ -20,7 +20,7 @@ namespace WebApplication1.Controllers
         {
             using (var context = new CapstoneDemoEntities())
             {
-                bool isValid = context.User.Any(x => x.Username == model.Username && x.Password == model.Password);
+                bool isValid = context.UserInformation.Any(x => x.Username == model.Username && x.Password == model.Password);
                 if (isValid)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, false);

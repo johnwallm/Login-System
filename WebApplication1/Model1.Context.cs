@@ -27,7 +27,6 @@ namespace WebApplication1
     
         public virtual DbSet<UserInformation> UserInformation { get; set; }
         public virtual DbSet<User> User { get; set; }
-
-        public System.Data.Entity.DbSet<WebApplication1.Models.Registered> Registereds { get; set; }
+        public virtual DbSet<UserType> UserType { get; set; }
     }
 }

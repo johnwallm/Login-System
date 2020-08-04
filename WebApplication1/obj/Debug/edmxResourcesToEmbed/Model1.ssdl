@@ -22,8 +22,35 @@
     <Property Name="Email" Type="varchar" MaxLength="100" />
     <Property Name="Notes" Type="varchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Notes" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__UserInfor__UserT__4E88ABD4">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserInformation" Type="Self.UserInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserInformation">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CapstoneDemoModelStoreContainer">
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__UserInfor__UserT__4E88ABD4" Association="Self.FK__UserInfor__UserT__4E88ABD4">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserInformation" EntitySet="UserInformation" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

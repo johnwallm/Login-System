@@ -13,10 +13,16 @@
     <Property Name="FamilyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserType" Relationship="CapstoneDemoModel.FK__UserInfor__UserT__4E88ABD4" FromRole="UserInformation" ToRole="UserType" />
   </EntityType>
   <EntityContainer Name="CapstoneDemoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="UserInformation" EntityType="Self.UserInformation" />
     <EntitySet Name="User" EntityType="CapstoneDemoModel.User" />
+    <EntitySet Name="UserType" EntityType="CapstoneDemoModel.UserType" />
+    <AssociationSet Name="FK__UserInfor__UserT__4E88ABD4" Association="CapstoneDemoModel.FK__UserInfor__UserT__4E88ABD4">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserInformation" EntitySet="UserInformation" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -26,4 +32,27 @@
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserInformation" Relationship="CapstoneDemoModel.FK__UserInfor__UserT__4E88ABD4" FromRole="UserType" ToRole="UserInformation" />
+  </EntityType>
+  <Association Name="FK__UserInfor__UserT__4E88ABD4">
+    <End Type="CapstoneDemoModel.UserType" Role="UserType" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="CapstoneDemoModel.UserInformation" Role="UserInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserInformation">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

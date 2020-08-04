@@ -37,6 +37,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: UserInformations/Create
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Create([Bind(Include = "UserInformationID,UserTypeID,Username,Password,GivenName,MaidenName,FamilyName,Email,Notes")] UserInformation userInformation)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: UserInformations/Edit/5
+        [Authorize(Roles = "Admin")] 
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace WebApplication1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "UserInformationID,UserTypeID,Username,Password,GivenName,MaidenName,FamilyName,Email,Notes")] UserInformation userInformation)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: UserInformations/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace WebApplication1.Controllers
         // POST: UserInformations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             UserInformation userInformation = db.UserInformation.Find(id);

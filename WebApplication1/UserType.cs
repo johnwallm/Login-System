@@ -12,18 +12,19 @@ namespace WebApplication1
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInformation
+    public partial class UserType
     {
-        public int UserInformationID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserType()
+        {
+            this.UserInformation = new HashSet<UserInformation>();
+        }
+    
         public int UserTypeID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string GivenName { get; set; }
-        public string MaidenName { get; set; }
-        public string FamilyName { get; set; }
-        public string Email { get; set; }
+        public string Description { get; set; }
         public string Notes { get; set; }
     
-        public virtual UserType UserType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserInformation> UserInformation { get; set; }
     }
 }

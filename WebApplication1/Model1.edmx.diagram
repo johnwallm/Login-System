@@ -7,6 +7,8 @@
       <Diagram DiagramId="9ffdc7edb6c54e3582489eb67e4492a8" Name="Diagram1">
         <EntityTypeShape EntityType="CapstoneDemoModel.UserInformation" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CapstoneDemoModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CapstoneDemoModel.UserType" Width="1.5" PointX="0.75" PointY="5.375" />
+        <AssociationConnector Association="CapstoneDemoModel.FK__UserInfor__UserT__4E88ABD4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
